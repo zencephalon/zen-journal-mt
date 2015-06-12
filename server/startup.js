@@ -16,5 +16,11 @@ if (Meteor.isServer) {
     // seedData();
 
     Journal.subscriptions();
+
+    Journals._ensureIndex({
+      "text": "text"
+    });
+
+    
   });
 }

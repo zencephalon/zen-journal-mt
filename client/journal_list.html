@@ -1,4 +1,7 @@
 <template name="journal_list">
+  <form>
+    <input name="search" type="text">
+  </form>
   {{#each journals}}
     {{> journal}}
   {{/each}}
