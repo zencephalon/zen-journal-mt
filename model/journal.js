@@ -53,7 +53,7 @@ Journal.create = function(o) {
 }
 
 Journal.processTags = function(text, uid) {
-  tags = text.match(/#(\S+)/g).map(function(s) { return s.slice(1, -1) });
+  tags = text.match(/#([A-Za-z0-9\-\_]+)/g).map(function(s) { return s.slice(1) });
   tags.forEach(function(tag) {
     try {
       Tag.create({name: tag, uid: uid});
