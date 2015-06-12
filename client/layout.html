@@ -10,6 +10,10 @@
       <a href="/index"><img src="/zenchinese.png" class="logo"/></a>
       {{> loginButtons}}
     </header>
-    {{> yield}}
+    {{#if currentUser}}
+      {{> yield}}
+    {{else}}
+      Please login to use your journal.
+    {{/if}}
   </div>
 </template>
