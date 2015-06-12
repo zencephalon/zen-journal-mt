@@ -56,3 +56,7 @@ Journal.create = function(o) {
 
   return new Journal(o);
 }
+
+Journal.findOne = function(o) {
+  return new Journal(Journals.findOne(o));
+}
