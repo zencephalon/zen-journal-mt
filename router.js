@@ -3,5 +3,5 @@ Router.configure({
 });
 
 Router.route('/', function () {
-  this.render('journal');
+  this.render('journal_list');
 });
