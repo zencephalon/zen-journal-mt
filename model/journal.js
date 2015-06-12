@@ -19,7 +19,7 @@ Journal = function (o) {
 }
 
 Journal.subscriptions = function() {
-  Meteor.publish("journals", function() { return Journals.find(); });
+  Meteor.publish("journals", function() { return Journals.find({uid: this.userId}); });
 }
 
 Journal.create = function(o) {
