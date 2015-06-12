@@ -12,9 +12,8 @@ function seedData() {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    dropData();
-    seedData();
-
+    // dropData();
+    // seedData();
 
     Journal.subscriptions();
   });
