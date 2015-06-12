@@ -1,0 +1,15 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href='//fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
+  <link rel="icon" sizes="16x16 32x32" href="/favicon.ico">
+</head>
+
+<template name="layout">
+  <div id="content">
+    <header>
+      <a href="/index"><img src="/zenchinese.png" class="logo"/></a>
+      {{> loginButtons}}
+    </header>
+    {{> yield}}
+  </div>
+</template>
