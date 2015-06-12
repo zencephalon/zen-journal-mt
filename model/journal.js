@@ -21,3 +21,11 @@ Journal = function (o) {
 Journal.subscriptions = function() {
   Meteor.publish("journals", function() { return Journals.find(); });
 }
+
+Journal.create = function(o) {
+  _.defaults(o, {createdAt: new Date(), updatedAt: new Date()})
+  id = Journals.insert(o);
+  o['_id'] = id;
+
+  return new Journal(o);
+}
