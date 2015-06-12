@@ -22,7 +22,7 @@ if (Meteor.isServer) {
     Journals._ensureIndex({
       "text": "text"
     });
+
     Tags._ensureIndex({name: 1, uid: 1}, {unique: true});
-    
   });
 }
