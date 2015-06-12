@@ -32,29 +32,34 @@ Journal.subscriptions = function() {
     return Journals.find(
       { $text: {$search: searchValue} },
       {
-        // `fields` is where we can add MongoDB projections. Here we're causing
-        // each document published to include a property named `score`, which
-        // contains the document's search rank, a numerical value, with more
-        // relevant documents having a higher score.
-        fields: {
-          score: { $meta: "textScore" }
-        },
-        // This indicates that we wish the publication to be sorted by the
-        // `score` property specified in the projection fields above.
-        sort: {
-          score: { $meta: "textScore" }
-        }
+        fields: { score: { $meta: "textScore" } },
+        sort: { score: { $meta: "textScore" } }
       }
     );
   });
 }
 
 Journal.create = function(o) {
-  _.defaults(o, {createdAt: new Date(), updatedAt: new Date()})
+  _.defaults(o, {createdAt: new Date(), updatedAt: new Date()});
+
+  if (o['text']) {
+    Journal.processTags(o['text'], o['uid']);
+  }
+
   id = Journals.insert(o);
   o['_id'] = id;
 
   return new Journal(o);
+}
+
+Journal.processTags = function(text, uid) {
+  tags = text.match(/#(\S+)/g).map(function(s) { return s.slice(1, -1) });
+  tags.forEach(function(tag) {
+    try {
+      Tag.create({name: tag, uid: uid});
+    } catch(e) {
+    }
+  })
 }
 
 Journal.findOne = function(o) {

@@ -3,6 +3,7 @@ Router.configure({
 });
 
 Router.route('/', function () {
+  this.wait(Meteor.subscribe('tags'));
   this.render('journal_list');
 });
 
