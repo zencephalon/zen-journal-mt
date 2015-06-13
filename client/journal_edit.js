@@ -1,6 +1,7 @@
 Template.journal_edit.rendered = function() {
   var journal = Session.get("journal");
   $('#journal_text').val(journal.text);
+  $('#journal_text').autosize();
 }
 
 Template.journal_edit.helpers({
