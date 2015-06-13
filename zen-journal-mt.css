@@ -62,6 +62,13 @@ code {
     overflow: auto;
 }
 
+#search {
+  border: 1px solid black;
+  font-size: 1.3em;
+  width: 100%;
+  font-family: Vollkorn;
+}
+
 #journal_title {
   font-size: 1.8em;
   font-family: Georgia; line-height:100%; margin-top: 0.5em; margin-bottom: 0; color: #36AECC; font-style: italic; font-weight: 400;
