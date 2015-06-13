@@ -61,8 +61,11 @@ Journal.prototype.update = function(update) {
         o[p] = this[p];
       }
     }
+    o['updatedAt'] = new Date();
+
     Journals.update(this._id, {"$set": o});
   } else {
+    update['updatedAt'] = new Date();
     Journals.update(this._id, update);
   }
 }
