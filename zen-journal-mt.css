@@ -62,17 +62,13 @@ code {
     overflow: auto;
 }
 
-#prose_title {
+#journal_title {
   font-size: 1.8em;
   font-family: Georgia; line-height:100%; margin-top: 0.5em; margin-bottom: 0; color: #36AECC; font-style: italic; font-weight: 400;
   padding: 0;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
-}
-
-#prose_title.private-true {
-  color: #000;
 }
 
 input {
