@@ -83,7 +83,7 @@ Journal.processTags = function(text, uid) {
   if (tags) {
     tags = tags.map(function(tag) {
       var tag = tag.slice(1);
-      if (! Tags.find({name: tag, uid: uid})) {
+      if (! Tags.findOne({name: tag, uid: uid})) {
         Tag.create({name: tag, uid: uid});
       }
       return tag;
