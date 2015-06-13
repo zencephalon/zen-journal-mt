@@ -1,15 +1,16 @@
 Tags = new Meteor.Collection("tags");
 
 Tags.allow({
-  update: function() {
-    return Permission.allow();
+  insert: function (userId, doc) {
+    return true;
   },
-  insert: function() {
-    return Permission.allow();
+  update: function (userId, doc, fields, modifier) {
+    return true;
   },
-  remove: function() {
-    return Permission.allow();
-  }
+  remove: function (userId, doc) {
+    return true;
+  },
+  fetch: ['uid']
 });
 
 Tag = function (o) {
