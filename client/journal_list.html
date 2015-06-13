@@ -2,7 +2,9 @@
   <form>
     <input name="search" type="text">
   </form>
+  <ul>
   {{#each journals}}
-    {{> journal}}
+    <li>{{> journal}}</li>
   {{/each}}
+  </ul>
 </template>
