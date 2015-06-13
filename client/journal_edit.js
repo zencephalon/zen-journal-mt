@@ -6,19 +6,18 @@ Template.journal_edit.rendered = function() {
 
 Template.journal_edit.events({
   'keypress': function(e) {
-    var target = $(e.target);
-
+    var $journal_text = $('#journal_text');
     var timer = Session.get("autosave_timer");
-    target.removeClass("saved");
+    $journal_text.removeClass("saved");
 
     if (timer !== undefined) {
       clearTimeout(timer);
     }
 
     Session.set("autosave_timer", setTimeout(function() {
-      target.addClass("saved");
+      $journal_text.addClass("saved");
       var journal = new Journal(Session.get("journal"));
-      journal.save($('#journal_text').val(), $('#journal_title').val());
+      journal.save($journal_text.val(), $('#journal_title').val());
     }, 1500));
   }
 });
