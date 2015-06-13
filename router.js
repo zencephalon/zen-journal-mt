@@ -9,7 +9,7 @@ Router.route('/', function () {
 
 Router.route('/j/:_id', function() {
   this.wait(Meteor.subscribe('journal', this.params._id));
-  this.wait(Meteor.subscribe('tags', this.params._id));
+  this.wait(Meteor.subscribe('tags'));
 
   if (this.ready()) {
     this.render('journal_edit', {
