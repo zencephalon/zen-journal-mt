@@ -41,7 +41,7 @@ Journal.subscriptions = function() {
 }
 
 Journal.create = function(o) {
-  _.defaults(o, {createdAt: new Date(), updatedAt: new Date()});
+  _.defaults(o, {createdAt: new Date(), updatedAt: new Date(), tags: []});
 
   if (o['text']) {
     Journal.processTags(o['text'], o['uid']);
@@ -71,21 +71,25 @@ Journal.prototype.update = function(update) {
 }
 
 Journal.prototype.save = function(text) {
-  Journal.processTags(text);
+  this.tags = Journal.processTags(text);
   this.text = text;
   this.update();
 }
 
 Journal.processTags = function(text, uid) {
-  tags = text.match(/#([A-Za-z0-9\-\_]+)/g);
+  var tags = text.match(/#([A-Za-z0-9\-\_]+)/g);
 
   if (tags) {
-    tags.forEach(function(tag) {
-      try {
-        Tag.create({name: tag.slice(1), uid: uid});
-      } catch(e) {}
+    tags = tags.map(function(tag) {
+      var tag = tag.slice(1);
+      if (! Tags.find({name: tag, uid: uid})) {
+        Tag.create({name: tag, uid: uid});
+      }
+      return tag;
     });
   }
+
+  return tags;
 }
 
 Journal.findOne = function(o) {
