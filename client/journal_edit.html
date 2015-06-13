@@ -1,3 +1,7 @@
 <template name="journal_edit">
+  <div class="edit_topbar">
+    <input type="text" id="journal_title" value="{{title}}" class="mousetrap"/>
+  </div>
+
   {{#textareaAutocomplete settings=settings id="journal_text" class="mousetrap"}}{{/textareaAutocomplete}}
 </template>
