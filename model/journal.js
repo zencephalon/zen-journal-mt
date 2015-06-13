@@ -71,7 +71,7 @@ Journal.prototype.update = function(update) {
 }
 
 Journal.prototype.save = function(text, title) {
-  this.tags = Journal.processTags(text);
+  this.tags = Journal.processTags(text, this.uid);
   this.text = text;
   this.title = title;
   this.update();
