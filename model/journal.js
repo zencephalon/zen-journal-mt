@@ -52,6 +52,24 @@ Journal.create = function(o) {
   return new Journal(o);
 }
 
+Journal.prototype.update = function(update) {
+  if (update === undefined) {
+    o = {};
+    for (p in this) {
+      if (p != '_id') {
+        o[p] = this[p];
+      }
+    }
+    Journals.update(this._id, {"$set": o});
+  } else {
+    Journals.update(this._id, update);
+  }
+}
+
+Journal.prototype.save = function() {
+
+}
+
 Journal.processTags = function(text, uid) {
   tags = text.match(/#([A-Za-z0-9\-\_]+)/g).map(function(s) { return s.slice(1) });
   tags.forEach(function(tag) {
