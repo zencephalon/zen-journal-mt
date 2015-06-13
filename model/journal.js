@@ -70,18 +70,22 @@ Journal.prototype.update = function(update) {
   }
 }
 
-Journal.prototype.save = function() {
-
+Journal.prototype.save = function(text) {
+  Journal.processTags(text);
+  this.text = text;
+  this.update();
 }
 
 Journal.processTags = function(text, uid) {
-  tags = text.match(/#([A-Za-z0-9\-\_]+)/g).map(function(s) { return s.slice(1) });
-  tags.forEach(function(tag) {
-    try {
-      Tag.create({name: tag, uid: uid});
-    } catch(e) {
-    }
-  })
+  tags = text.match(/#([A-Za-z0-9\-\_]+)/g);
+
+  if (tags) {
+    tags.forEach(function(tag) {
+      try {
+        Tag.create({name: tag.slice(1), uid: uid});
+      } catch(e) {}
+    });
+  }
 }
 
 Journal.findOne = function(o) {
