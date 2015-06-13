@@ -1,15 +1,16 @@
 Journals = new Meteor.Collection("journals");
 
 Journals.allow({
-  update: function() {
-    return Permission.allow();
+  insert: function (userId, doc) {
+    return (userId && doc.uid === userId);
   },
-  insert: function() {
-    return Permission.allow();
+  update: function (userId, doc, fields, modifier) {
+    return doc.uid === userId;
   },
-  remove: function() {
-    return Permission.allow();
-  }
+  remove: function (userId, doc) {
+    return doc.uid === userId;
+  },
+  fetch: ['uid']
 });
 
 Journal = function (o) {
