@@ -18,7 +18,7 @@ Template.journal_edit.events({
     Session.set("autosave_timer", setTimeout(function() {
       target.addClass("saved");
       var journal = new Journal(Session.get("journal"));
-      journal.save($('#journal_text').val());
+      journal.save($('#journal_text').val(), $('#journal_title').val());
     }, 1500));
   }
 });
