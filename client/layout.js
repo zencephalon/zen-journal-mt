@@ -7,4 +7,8 @@ Template.layout.rendered = function() {
     fontRatio: 40,
     lineRatio: 1.45
   });
+
+  Mousetrap.bind('ctrl+n', function() {
+    Router.go('/j/new');
+  })
 }
