@@ -6,13 +6,20 @@ Template.journal_list.helpers({
     } else {
       return Journals.find({});
     }
+  },
+  searchVal: function() {
+    return Session.get("searchVal");
   }
 });
 
+Template.throttled_search = _.throttle(function(event) {
+  Session.set("searchVal", $(event.target).val());
+  console.log(Session.get("searchVal"));
+}, 200)
+
 Template.journal_list.events({
+  'keyup #search': Template.throttled_search,
   'submit form': function(event) {
     event.preventDefault();
-    Session.set("searchVal", $(event.target).children('input').val())
-    console.log(Session.get("searchVal"))
   }
 })
