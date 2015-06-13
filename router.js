@@ -7,6 +7,12 @@ Router.route('/', function () {
   this.render('journal_list');
 });
 
+Router.route('/j/new', function() {
+  var journal = Journal.create({uid: Meteor.userId()});
+
+  this.redirect('/j/' + journal._id);
+});
+
 Router.route('/j/:_id', function() {
   this.wait(Meteor.subscribe('journal', this.params._id));
   this.wait(Meteor.subscribe('tags'));
