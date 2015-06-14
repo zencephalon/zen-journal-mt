@@ -12,6 +12,10 @@ Template.journal_list.helpers({
   }
 });
 
+Template.journal_list.rendered = function() {
+  $('#search').focus();
+}
+
 Template.throttled_search = _.throttle(function(event) {
   Session.set("searchVal", $(event.target).val());
   console.log(Session.get("searchVal"));
