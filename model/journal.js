@@ -28,7 +28,7 @@ Journal.subscriptions = function() {
 
   Meteor.publish("search", function(searchValue) {
     if (!searchValue) {
-      return Journals.find({uid: this.userId}, {limit: 25});
+      return Journals.find({uid: this.userId}, {limit: 25, sort: {updatedAt: -1}});
     }
     return Journals.find(
       { $text: {$search: searchValue}, uid: this.userId },
