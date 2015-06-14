@@ -10,5 +10,9 @@ Template.layout.rendered = function() {
 
   Mousetrap.bind('ctrl+n', function() {
     Router.go('/j/new');
+  });
+
+  Mousetrap.bind('ctrl+f', function() {
+    Router.go('/');
   })
 }
