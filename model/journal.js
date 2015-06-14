@@ -28,13 +28,14 @@ Journal.subscriptions = function() {
 
   Meteor.publish("search", function(searchValue) {
     if (!searchValue) {
-      return Journals.find({});
+      return Journals.find({uid: this.userId}, {limit: 25});
     }
     return Journals.find(
-      { $text: {$search: searchValue} },
+      { $text: {$search: searchValue}, uid: this.userId },
       {
         fields: { score: { $meta: "textScore" } },
-        sort: { score: { $meta: "textScore" } }
+        sort: { score: { $meta: "textScore" } },
+        limit: 25
       }
     );
   });
