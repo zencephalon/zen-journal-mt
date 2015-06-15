@@ -9,6 +9,19 @@ Template.journal_list.helpers({
   },
   searchVal: function() {
     return Session.get("searchVal");
+  },
+  settings: function() {
+    return {
+      position: "bottom",
+      limit: 5,
+      rules: [{
+        token: '#',
+        replacement: '#',
+        collection: Tags,
+        field: "name",
+        template: Template.tag_preview
+      }]
+    }
   }
 });
 

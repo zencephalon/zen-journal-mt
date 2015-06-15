@@ -1,6 +1,7 @@
 <template name="journal_list">
   <form>
-    <input name="search" type="text" id="search" placeholder="search" class="mousetrap">
+    {{> inputAutocomplete settings=settings id="search" class="mousetrap" placeholder="search" name="search"}}
+
   </form>
   <ul>
   {{#each journals}}
