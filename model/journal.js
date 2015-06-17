@@ -54,6 +54,11 @@ Journal.create = function(o) {
   return new Journal(o);
 }
 
+Journal.countWords = function(text) {
+  var regex = /\s+/gi;
+  return text.trim().replace(regex, ' ').split(' ').length;
+}
+
 Journal.prototype.update = function(update) {
   if (update === undefined) {
     o = {};
@@ -72,7 +77,14 @@ Journal.prototype.update = function(update) {
 }
 
 Journal.prototype.save = function(text, title) {
+  if (text === undefined) {
+    text = this.text;
+  }
+  if (title === undefined) {
+    title = this.title;
+  }
   this.tags = Journal.processTags(text, this.uid);
+  this.count = Journal.countWords(text);
   this.text = text;
   this.title = title;
   this.update();

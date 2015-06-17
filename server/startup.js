@@ -11,6 +11,12 @@ function seedData() {
   Journal.create({text: "Luv is the law, #luv under will.", uid: uid});
 }
 
+function resaveAll() {
+  Journals.find({}).fetch().forEach(function(journal) {
+    new Journal(journal).save();
+  });
+}
+
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // dropData();
@@ -18,6 +24,8 @@ if (Meteor.isServer) {
 
     Journal.subscriptions();
     Tag.subscriptions();
+
+    resaveAll();
 
     Journals._ensureIndex({
       "text": "text"
