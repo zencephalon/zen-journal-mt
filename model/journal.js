@@ -42,7 +42,7 @@ Journal.subscriptions = function() {
 }
 
 Journal.create = function(o) {
-  _.defaults(o, {createdAt: new Date(), updatedAt: new Date(), tags: [], title: new Date().toString()});
+  _.defaults(o, {createdAt: new Date(), updatedAt: new Date(), tags: [], title: new Date().toString(), count: 0, text: ""});
 
   if (o['text']) {
     Journal.processTags(o['text'], o['uid']);
