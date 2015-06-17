@@ -7,6 +7,9 @@ Template.journal_list.helpers({
       return Journals.find({});
     }
   },
+  totalWordCount: function() {
+    return Session.get("totalWordCount");
+  },
   searchVal: function() {
     return Session.get("searchVal");
   },

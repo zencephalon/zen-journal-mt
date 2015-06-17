@@ -33,4 +33,14 @@ if (Meteor.isServer) {
 
     Tags._ensureIndex({name: 1, uid: 1}, {unique: true});
   });
+
+  Meteor.methods({
+    totalWordCount: function() {
+      var sum = 0;
+
+      _(Journals.find({}, {fields: {count: 1}}).fetch()).pluck("count").map(function(num) { sum += num });
+
+      return sum;
+    }
+  })
 }

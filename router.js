@@ -4,6 +4,9 @@ Router.configure({
 
 Router.route('/', function () {
   this.wait(Meteor.subscribe('tags'));
+  Meteor.call("totalWordCount", function(error, result) {
+    Session.set("totalWordCount", result);
+  });
   this.render('journal_list');
 });
 
