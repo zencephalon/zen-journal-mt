@@ -4,6 +4,8 @@ Router.configure({
 
 Router.route('/', function () {
   this.wait(Meteor.subscribe('tags'));
+  this.wait(Meteor.subscribe("search", Session.get("searchVal")));
+
   Meteor.call("totalWordCount", function(error, result) {
     Session.set("totalWordCount", result);
   });
