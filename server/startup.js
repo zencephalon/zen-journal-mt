@@ -25,7 +25,7 @@ if (Meteor.isServer) {
     Journal.subscriptions();
     Tag.subscriptions();
 
-    resaveAll();
+    // resaveAll();
 
     Journals._ensureIndex({
       "text": "text"
