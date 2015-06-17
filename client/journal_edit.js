@@ -37,5 +37,8 @@ Template.journal_edit.helpers({
         template: Template.tag_preview
       }]
     }
+  },
+  wordCount: function() {
+    return Session.get("journal").count;
   }
 });
