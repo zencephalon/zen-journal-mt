@@ -26,7 +26,6 @@ Router.route('/j/:_id', function() {
     this.render('journal_edit', {
       data: function() {
         var journal = Journal.findOne({_id: this.params._id});
-        Session.set("journal", journal);
         return journal;
       }
     });

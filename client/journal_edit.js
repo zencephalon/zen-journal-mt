@@ -1,7 +1,6 @@
 Template.journal_edit.rendered = function() {
-  var journal = Session.get("journal");
   var $journal_text = $('#journal_text');
-  $journal_text.val(journal.text);
+  $journal_text.val(this.data.text);
   $journal_text.autosize();
   $journal_text.focus();
 }
@@ -10,6 +9,7 @@ Template.journal_edit.events({
   'keypress': function(e) {
     var $journal_text = $('#journal_text');
     var timer = Session.get("autosave_timer");
+    var journal = Template.currentData();
     $journal_text.removeClass("saved");
 
     if (timer !== undefined) {
@@ -18,7 +18,6 @@ Template.journal_edit.events({
 
     Session.set("autosave_timer", setTimeout(function() {
       $journal_text.addClass("saved");
-      var journal = new Journal(Session.get("journal"));
       journal.save($journal_text.val(), $('#journal_title').val());
     }, 1500));
   }
@@ -39,6 +38,6 @@ Template.journal_edit.helpers({
     }
   },
   wordCount: function() {
-    return Session.get("journal").count;
+    return this.count;
   }
 });
