@@ -30,6 +30,6 @@ Router.route('/j/:_id', function() {
       }
     });
   } else {
-    this.render("loading")
+    this.render("loading");
   }
 })

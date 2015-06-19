@@ -36,11 +36,10 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     totalWordCount: function() {
-      var sum = 0;
-
-      _(Journals.find({}, {fields: {count: 1}}).fetch()).pluck("count").map(function(num) { sum += num });
-
-      return sum;
+      return Journals.aggregate([
+        {$project: {count: 1}},
+        {$group: {_id: null, count: {$sum: "$count"}}}
+      ])[0]['count'];
     }
   })
 }
