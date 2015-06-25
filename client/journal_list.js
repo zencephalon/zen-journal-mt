@@ -32,13 +32,13 @@ Template.journal_list.rendered = function() {
   $('#search').focus();
 }
 
-Template.throttled_search = _.throttle(function(event) {
+Template.journal_list.throttled_search = _.throttle(function(event) {
   Session.set("searchVal", $(event.target).val());
   console.log(Session.get("searchVal"));
 }, 200)
 
 Template.journal_list.events({
-  'keyup #search': Template.throttled_search,
+  'keyup #search': Template.journal_list.throttled_search,
   'submit form': function(event) {
     event.preventDefault();
   }
