@@ -8,11 +8,11 @@ Template.layout.rendered = function() {
     lineRatio: 1.45
   });
 
-  Mousetrap.bind('ctrl+n', function() {
+  Mousetrap.bind('alt+n', function() {
     Router.go('/j/new');
   });
 
-  Mousetrap.bind('ctrl+f', function() {
+  Mousetrap.bind('alt+f', function() {
     Router.go('/');
   })
 }
