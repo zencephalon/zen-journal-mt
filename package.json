@@ -1,0 +1,23 @@
+{
+  "name": "zen-journal-mt",
+  "version": "0.1.0",
+  "description": "A zen way to journal",
+  "main": "router.js",
+  "dependencies": {
+    "bcrypt": "^0.8.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zencephalon/zen-journal-mt.git"
+  },
+  "author": "Matthew Bunday (http://zencephalon.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zencephalon/zen-journal-mt/issues"
+  },
+  "homepage": "https://github.com/zencephalon/zen-journal-mt#readme"
+}
