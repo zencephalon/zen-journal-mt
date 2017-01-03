@@ -22,7 +22,9 @@ Template.layout.rendered = function() {
 
   Mousetrap.bind('ctrl+shift+j', function() {
     Router.go('/');
-    Router.go('/template');
+    setTimeout(function() {
+      Router.go('/template');
+    }, 100)
   })
 
   Mousetrap.bind('ctrl+alt+j', function() {
@@ -31,6 +33,8 @@ Template.layout.rendered = function() {
 
   Mousetrap.bind('ctrl+j', function() {
     Router.go('/');
-    Router.go('/today');
+    setTimeout(function() {
+      Router.go('/today');
+    }, 100)
   })
 }

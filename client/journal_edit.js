@@ -1,5 +1,7 @@
 Template.journal_edit.rendered = function() {
   var $journal_text = $('#journal_text');
+  var $journal_title = $('#journal_title');
+  $journal_title.val(this.data.title);
   $journal_text.val(this.data.text);
   $journal_text.autosize();
   $journal_text.focus();
