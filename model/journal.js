@@ -20,10 +20,16 @@ Journal = function (o) {
 }
 
 Journal.subscriptions = function() {
-  Meteor.publish("journals", function() { return Journals.find({uid: this.userId}); });
+  Meteor.publish("journals", function() {
+    return Journals.find({uid: this.userId});
+  })
 
   Meteor.publish("journal", function(_id) {
-    return Journals.find({_id: _id});
+    return Journals.find({ _id: _id, uid: this.userId });
+  })
+
+  Meteor.publish("template", function() {
+    return Journals.find({ uid: this.userId, template: true });
   })
 
   Meteor.publish("search", function(searchValue) {
@@ -61,6 +67,14 @@ Journal.create = function(o) {
   o['_id'] = id;
 
   return new Journal(o);
+}
+
+Journal.createDefaultTemplate = function(o) {
+  return Journal.create(_.defaults(o, {
+    title: '__daily_journal_template__',
+    template: true,
+    text: 'ILUVU Aliza,',
+  }))
 }
 
 Journal.countWords = function(text) {

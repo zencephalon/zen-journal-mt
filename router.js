@@ -12,6 +12,22 @@ Router.route('/', function () {
   this.render('journal_list');
 });
 
+Router.route('/j/template', function() {
+  this.wait(Meteor.subscribe('template'));
+
+  if (this.ready()) {
+    var template = Journal.findOne({ uid: Meteor.userId(), template: true })
+    template = template._id ? template : Journal.createDefaultTemplate({ uid: Meteor.userId() })
+    this.render('journal_edit', {
+      data: function() {
+        return template
+      }
+    })
+  } else {
+    this.render("loading");
+  }
+});
+
 Router.route('/j/new', function() {
   var journal = Journal.create({uid: Meteor.userId()});
 
