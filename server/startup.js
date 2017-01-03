@@ -17,6 +17,8 @@ function resaveAll() {
   });
 }
 
+// function seed
+
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // dropData();
