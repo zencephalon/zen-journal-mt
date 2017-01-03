@@ -21,11 +21,19 @@ Journal = function (o) {
 
 Journal.subscriptions = function() {
   Meteor.publish("journals", function() {
-    return Journals.find({uid: this.userId});
+    return Journals.find({uid: this.userId });
   })
 
   Meteor.publish("journal", function(_id) {
     return Journals.find({ _id: _id, uid: this.userId });
+  })
+
+  Meteor.publish("today", function() {
+    return Journals.find({ day: new Date().toLocaleDateString(), uid: this.userId })
+  })
+
+  Meteor.publish("dailies", function() {
+    return Journals.find({ day: { $exists: true }, uid: this.userId })
   })
 
   Meteor.publish("template", function() {
@@ -34,7 +42,10 @@ Journal.subscriptions = function() {
 
   Meteor.publish("search", function(searchValue) {
     if (!searchValue) {
-      return Journals.find({uid: this.userId}, {limit: 25, sort: {createdAt: -1}});
+      return Journals.find({
+        uid: this.userId,
+        template: { $ne: true }
+      }, {limit: 25, sort: {createdAt: -1}});
     }
     return Journals.find(
       { $text: {$search: searchValue}, uid: this.userId },
@@ -56,7 +67,7 @@ Journal.create = function(o) {
     count: 0,
     text: "",
     template: false,
-    daily: false,
+    day: null,
   });
 
   if (o['text']) {
@@ -74,6 +85,14 @@ Journal.createDefaultTemplate = function(o) {
     title: '__daily_journal_template__',
     template: true,
     text: 'ILUVU Aliza,',
+  }))
+}
+
+Journal.createToday = function(o) {
+  var d = new Date()
+  return Journal.create(_.defaults(o, {
+    title: d.toString().split(" ").slice(0, 4).join(" "),
+    day: d.toLocaleDateString(),
   }))
 }
 

@@ -12,6 +12,26 @@ Router.route('/', function () {
   this.render('journal_list');
 });
 
+Router.route('/j/today', function() {
+  this.wait(Meteor.subscribe('template'));
+  this.wait(Meteor.subscribe('today'));
+
+  if (this.ready()) {
+    var template = Journal.findOne({ uid: Meteor.userId(), template: true })
+    template = template._id ? template : Journal.createDefaultTemplate({ uid: Meteor.userId() })
+
+    var daily = Journal.findOne({ uid: Meteor.userId(), day: new Date().toLocaleDateString() })
+    daily = daily._id ? daily : Journal.createToday({ uid: Meteor.userId(), text: template.text })
+    this.render('journal_edit', {
+      data: function() {
+        return daily
+      }
+    })
+  } else {
+    this.render("loading");
+  }
+});
+
 Router.route('/j/template', function() {
   this.wait(Meteor.subscribe('template'));
 
