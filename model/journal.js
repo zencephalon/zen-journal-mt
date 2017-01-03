@@ -21,7 +21,7 @@ Journal = function (o) {
 
 Journal.subscriptions = function() {
   Meteor.publish("journals", function() {
-    return Journals.find({uid: this.userId });
+    return Journals.find({ uid: this.userId });
   })
 
   Meteor.publish("journal", function(_id) {

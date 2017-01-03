@@ -12,7 +12,31 @@ Router.route('/', function () {
   this.render('journal_list');
 });
 
-Router.route('/j/today', function() {
+Router.route('/all', function() {
+  this.wait(Meteor.subscribe('journals'));
+
+  this.render('journal_summary_list', {
+    data: function() {
+      return {
+        journals: Journals.find({ uid: Meteor.userId() }, { sort: { createdAt: -1 } })
+      }
+    }
+  })
+})
+
+Router.route('/dailies', function() {
+  this.wait(Meteor.subscribe('dailies'));
+
+  this.render('journal_summary_list', {
+    data: function() {
+      return {
+        journals: Journals.find({ uid: Meteor.userId(), day: { $exists: true } }, { sort: { createdAt: -1 } })
+      }
+    }
+  })
+})
+
+Router.route('/today', function() {
   this.wait(Meteor.subscribe('template'));
   this.wait(Meteor.subscribe('today'));
 
@@ -32,7 +56,7 @@ Router.route('/j/today', function() {
   }
 });
 
-Router.route('/j/template', function() {
+Router.route('/template', function() {
   this.wait(Meteor.subscribe('template'));
 
   if (this.ready()) {

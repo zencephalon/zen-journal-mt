@@ -16,11 +16,19 @@ Template.layout.rendered = function() {
     Router.go('/');
   })
 
+  Mousetrap.bind('ctrl+shift+f', function() {
+    Router.go('/all');
+  })
+
   Mousetrap.bind('ctrl+shift+j', function() {
-    Router.go('/j/template');
+    Router.go('/template');
+  })
+
+  Mousetrap.bind('ctrl+alt+j', function() {
+    Router.go('/dailies')
   })
 
   Mousetrap.bind('ctrl+j', function() {
-    Router.go('/j/today');
+    Router.go('/today');
   })
 }
