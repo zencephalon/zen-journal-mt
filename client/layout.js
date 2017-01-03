@@ -19,4 +19,8 @@ Template.layout.rendered = function() {
   Mousetrap.bind('ctrl+shift+j', function() {
     Router.go('/j/template');
   })
+
+  Mousetrap.bind('ctrl+j', function() {
+    Router.go('/j/today');
+  })
 }
