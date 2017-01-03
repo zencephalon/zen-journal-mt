@@ -21,6 +21,7 @@ Template.layout.rendered = function() {
   })
 
   Mousetrap.bind('ctrl+shift+j', function() {
+    Router.go('/');
     Router.go('/template');
   })
 
@@ -29,6 +30,7 @@ Template.layout.rendered = function() {
   })
 
   Mousetrap.bind('ctrl+j', function() {
+    Router.go('/');
     Router.go('/today');
   })
 }
