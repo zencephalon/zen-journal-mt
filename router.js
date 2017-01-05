@@ -30,7 +30,7 @@ Router.route('/dailies', function() {
   this.render('journal_summary_list', {
     data: function() {
       return {
-        journals: Journals.find({ uid: Meteor.userId(), day: { $exists: true } }, { sort: { createdAt: -1 } })
+        journals: Journals.find({ uid: Meteor.userId(), day: { $ne: null } }, { sort: { createdAt: -1 } })
       }
     }
   })

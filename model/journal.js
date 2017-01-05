@@ -33,7 +33,7 @@ Journal.subscriptions = function() {
   })
 
   Meteor.publish("dailies", function() {
-    return Journals.find({ day: { $exists: true }, uid: this.userId })
+    return Journals.find({ day: { $ne: null }, uid: this.userId })
   })
 
   Meteor.publish("template", function() {
